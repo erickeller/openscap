@@ -52,6 +52,7 @@
 
 /* SEAP */
 #include <seap.h>
+#include <probe/option.h>
 #include <probe-api.h>
 #include <alloc.h>
 
@@ -71,6 +72,7 @@ static struct dpkginfo_global g_dpkg;
 void *probe_init(void)
 {
         pthread_mutex_init (&(g_dpkg.mutex), NULL);
+        probe_setoption(PROBEOPT_OFFLINE_MODE_SUPPORTED, PROBE_OFFLINE_CHROOT);
         dpkginfo_init();
 
         return ((void *)&g_dpkg);
